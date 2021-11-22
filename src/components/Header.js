@@ -1,16 +1,27 @@
 const Header = () => {
+    const onHeaderClick = (e) => {
+        e.preventDefault();
+
+        if (e.target.tagName === 'A') {
+            // console.log(e.target.href);
+
+            // let url = new URL(e.target.href);
+            // console.log(url.pathname);
+        }
+    };
+
     return (
-        <header>
-            <h1><a className="home" href="a">GamesPlay</a></h1>
+        <header onClick={onHeaderClick}>
+            <h1><a className="home" href="/home">GamesPlay</a></h1>
             <nav>
-                <a href="a">All games</a>
+                <a href="/games">All games</a>
                 <div id="user">
-                    <a href="a">Create Game</a>
-                    <a href="a">Logout</a>
+                    <a href="/create">Create Game</a>
+                    <a href="/logout">Logout</a>
                 </div>
                 <div id="guest">
-                    <a href="a">Login</a>
-                    <a href="a">Register</a>
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
                 </div>
             </nav>
         </header>
