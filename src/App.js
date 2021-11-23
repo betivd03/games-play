@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import Catalog from "./components/Catalog.js";
 import CreateGame from "./components/CreateGame.js";
+import ErrorPage from "./components/ErrorPage.js";
 import Header from "./components/Header.js";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
@@ -31,8 +32,9 @@ function App() {
             />
             
             <main id="main-content">
-                { routes[page] || <h2>No Page Found!</h2> }
-                {/* { createElement(routes[page]) || <h2>No Page Found!</h2> } */}
+                { routes[page] || <ErrorPage /> }
+                {/* { routes[page] || <ErrorPage>Some info</ErrorPage> } */}
+                {/* { createElement(routes[page]) || <ErrorPage /> } */}
             </main>
         </div>
     );
