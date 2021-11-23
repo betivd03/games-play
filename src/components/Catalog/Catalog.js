@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import * as gameService from "../../services/gameService.js";
+
 import Card from "./Card.js";
 
 const Catalog = () => {
@@ -18,8 +20,16 @@ const Catalog = () => {
         //         });
         // }, 1000);
 
-        fetch('http://localhost:3030/data/games?sortBy=_createdOn%20desc')
-            .then(res => res.json())
+
+
+        // fetch('http://localhost:3030/data/games?sortBy=_createdOn%20desc')
+        //     .then(res => res.json())
+        //     .then(result => {
+        //         setGames(result);
+        //     });
+
+
+        gameService.getAll()
             .then(result => {
                 setGames(result);
             });
