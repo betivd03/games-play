@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import { createElement } from "react";
 
-import Catalog from "./components/Catalog.js";
+import Catalog from "./components/Catalog/Catalog.js";
 import CreateGame from "./components/CreateGame.js";
 import ErrorPage from "./components/ErrorPage.js";
 import Header from "./components/Header.js";
