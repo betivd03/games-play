@@ -4,6 +4,7 @@ import { useState } from "react";
 import Catalog from "./components/Catalog/Catalog.js";
 import CreateGame from "./components/CreateGame.js";
 import ErrorPage from "./components/ErrorPage.js";
+import GameDetails from "./components/GameDetails.js";
 import Header from "./components/Header.js";
 import Login from "./components/Login.js";
 import Register from "./components/Register.js";
@@ -12,17 +13,27 @@ import WelcomeWorld from "./components/WelcomeWorld.js";
 function App() {
     const [page, setPage] = useState('/home');
 
-    const routes = {
-        '/home': <WelcomeWorld />,
-        '/games': <Catalog />,
-        '/create': <CreateGame />,
-        '/login': <Login />,
-        '/register': <Register />
-    };
-
     const navigationChangeHandler = (path) => {
         console.log(path);
         setPage(path);
+    };
+
+    const router = (path) => {
+        let pathNames = path.split('/');
+
+        let rootPath = pathNames[1];
+        let argument = pathNames[2];
+
+        const routes = {
+            'home': <WelcomeWorld />,
+            'games': <Catalog navigationChangeHandler={navigationChangeHandler} />,
+            'create': <CreateGame />,
+            'login': <Login />,
+            'register': <Register />,
+            'details': <GameDetails id={argument} />
+        };
+
+        return routes[rootPath];
     }
     
     return (
@@ -32,7 +43,7 @@ function App() {
             />
             
             <main id="main-content">
-                { routes[page] || <ErrorPage /> }
+                { router(page) || <ErrorPage /> }
                 {/* { routes[page] || <ErrorPage>Some info</ErrorPage> } */}
                 {/* { createElement(routes[page]) || <ErrorPage /> } */}
             </main>

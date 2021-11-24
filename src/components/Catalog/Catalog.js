@@ -4,7 +4,9 @@ import * as gameService from "../../services/gameService.js";
 
 import Card from "./Card.js";
 
-const Catalog = () => {
+const Catalog = ({
+    navigationChangeHandler
+}) => {
     const [games, setGames] = useState([]);
     // const [loading, setLoading] = useState(false);
 
@@ -47,7 +49,7 @@ const Catalog = () => {
             } */}
 
             { games.length > 0
-                ? games.map(x => <Card key={x._id} game={x} />)
+                ? games.map(x => <Card key={x._id} game={x} navigationChangeHandler={navigationChangeHandler} />)
                 : <h3 className="no-articles">No games yet</h3>
             }
             
