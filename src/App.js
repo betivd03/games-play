@@ -25,7 +25,7 @@ function App() {
         let argument = pathNames[2];
 
         const routes = {
-            'home': <WelcomeWorld />,
+            'home': <WelcomeWorld navigationChangeHandler={navigationChangeHandler} />,
             'games': <Catalog navigationChangeHandler={navigationChangeHandler} />,
             'create': <CreateGame />,
             'login': <Login />,

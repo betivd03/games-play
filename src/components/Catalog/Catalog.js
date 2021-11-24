@@ -48,9 +48,10 @@ const Catalog = ({
                     : <h3 className="no-articles">No games yet</h3>
             } */}
 
-            { games.length > 0
-                ? games.map(x => <Card key={x._id} game={x} navigationChangeHandler={navigationChangeHandler} />)
-                : <h3 className="no-articles">No games yet</h3>
+            { 
+                games.length > 0
+                    ? games.map(x => <Card key={x._id} game={x} navigationChangeHandler={navigationChangeHandler} />)
+                    : <h3 className="no-articles">No games yet</h3>
             }
             
         </section>

@@ -1,4 +1,20 @@
-const WelcomeWorld = () => {
+import { useState, useEffect } from "react";
+
+import * as gameService from "../services/gameService.js";
+import LatestGameCard from "./LatestGameCard.js";
+
+const WelcomeWorld = ({
+    navigationChangeHandler
+}) => {
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        gameService.getLatest()
+            .then(result => {
+                setGames(result);
+            })
+    }, []);
+
     return (
         <section id="welcome-world">
             <div className="welcome-message">
@@ -10,44 +26,12 @@ const WelcomeWorld = () => {
             <div id="home-page">
                 <h1>Latest Games</h1>
 
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="/images/CoverFire.png" alt="img" />
-                    </div>
-                    <h3>Cover Fire</h3>
-                    <div className="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="a" className="btn details-btn">Details</a>
-                    </div>
-                </div>
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="/images/ZombieLang.png" alt="img" />
-                    </div>
-                    <h3>Zombie Lang</h3>
-                    <div className="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="a" className="btn details-btn">Details</a>
-                    </div>
-                </div>
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="/images/MineCraft.png" alt="img" />
-                    </div>
-                    <h3>MineCraft</h3>
-                    <div className="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="a" className="btn details-btn">Details</a>
-                    </div>
-                </div>
-
-                <p className="no-articles">No games yet</p>
+                {
+                    games.length > 0
+                        ? games.map(x => <LatestGameCard key={x._id} game={x} navigationChangeHandler={navigationChangeHandler} />)
+                        : <p className="no-articles">No games yet</p>
+                }
+                
             </div>
         </section>
     );
