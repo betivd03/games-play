@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
+
 const LatestGameCard = ({
-    game,
-    navigationChangeHandler
+    game
 }) => {
-    const onDetailsClick = (e) => {
-        e.preventDefault();
-        navigationChangeHandler(`/details/${game._id}`);
-    };
+    // const onDetailsClick = (e) => {
+    //     e.preventDefault();
+    //     navigationChangeHandler(`/details/${game._id}`);
+    // };
 
     return (
         <div className="game">
@@ -17,7 +18,8 @@ const LatestGameCard = ({
                 <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
             </div>
             <div className="data-buttons">
-                <a href={`/details/${game._id}`} onClick={onDetailsClick} className="btn details-btn">Details</a>
+                {/* <a href={`/details/${game._id}`} onClick={onDetailsClick} className="btn details-btn">Details</a> */}
+                <Link to={`/games/${game._id}`} className="btn details-btn">Details</Link>
             </div>
         </div>
     );

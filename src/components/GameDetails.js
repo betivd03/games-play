@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react"; 
+// import { Redirect } from "react-router-dom";
 
 import * as gameService from "../services/gameService.js";
 
 const GameDetails = ({
-    id
+    location,
+    history,
+    match
 }) => {
-    const [game, setGame] = useState([]);
+    const [game, setGame] = useState({});
 
     useEffect(() => {
-        gameService.getOne(id)
+        gameService.getOne(match.params.gameId)
             .then(result => {
                 setGame(result);
             })

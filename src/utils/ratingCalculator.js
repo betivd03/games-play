@@ -1,0 +1,1 @@
+export const ratingCalculator = () => Math.random() * 10;
